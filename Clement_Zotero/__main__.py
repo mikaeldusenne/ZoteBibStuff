@@ -3,15 +3,6 @@ import logging
 import os
 import sys
 
-logging.basicConfig(
-    filename="result/log.txt",  # Output file
-    level=logging.INFO,  # Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-    format="%(asctime)s - %(levelname)s - %(message)s",  # Log format
-    datefmt="%Y-%m-%d %H:%M:%S"  # Date format
-)
-
-
-
 namespace_map = {
     'rdf': "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     'z': "http://www.zotero.org/namespaces/export#",
@@ -53,6 +44,12 @@ if __name__ == "__main__":
     file_input = sys.argv[1] # "data/Systematic review.rdf"
     
     os.makedirs("./result", exist_ok=True)
+    logging.basicConfig(
+        filename="result/log.txt",  # Output file
+        level=logging.INFO,  # Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+        format="%(asctime)s - %(levelname)s - %(message)s",  # Log format
+        datefmt="%Y-%m-%d %H:%M:%S"  # Date format
+    )
     
     with open(file_input, encoding="utf-8") as f:
         xml_data = f.read()
@@ -63,3 +60,4 @@ if __name__ == "__main__":
         f.write(modified_xml)
     
     print("Done.\nResults saved to ./results")
+
